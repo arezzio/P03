@@ -1,0 +1,47 @@
+def generate_truth_table(gate, inputSignal1, inputSignal2=None):
+    outputSignal = 'O'  # Default output signal name
+
+    # Print the header of the truth table
+    print(f"{inputSignal1}  {inputSignal2 if inputSignal2 else ''}  |  {outputSignal}")
+    print('-' * (7 if inputSignal2 else 5))
+
+    # Define possible input combinations based on the number of inputs
+    if gate == "NOT":
+        # For NOT gate, we only need 1 input signal
+        truth_values = [(0,), (1,)]
+    else:
+        # For other gates, we have 2 input signals
+        truth_values = [(0, 0), (0, 1), (1, 0), (1, 1)]
+
+    # Process the input values according to the selected gate
+    for values in truth_values:
+        if gate == "AND":
+            output = values[0] and values[1]
+        elif gate == "OR":
+            output = values[0] or values[1]
+        elif gate == "XOR":
+            output = values[0] ^ values[1]
+        elif gate == "NOT":
+            output = not values[0]
+        else:
+            print("Invalid gate type")
+            return
+        
+        # Print the truth table row
+        if gate == "NOT":
+            print(f"{values[0]}       |  {int(output)}")
+        else:
+            print(f"{values[0]}  {values[1]}  |  {int(output)}")
+
+
+# Get inputs from the user
+gate = input("Enter the type of gate (AND, OR, NOT, XOR): ").upper()
+inputSignal1 = input("Enter the first input signal name (e.g., A): ")
+
+# For NOT gate, we don't need a second input signal
+inputSignal2 = None
+if gate != "NOT":
+    inputSignal2 = input("Enter the second input signal name (e.g., B): ")
+
+# Generate the truth table
+generate_truth_table(gate, inputSignal1, inputSignal2)
