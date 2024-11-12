@@ -35,13 +35,13 @@ def generate_truth_table(gate, inputSignal1, inputSignal2=None):
 
 
 # Get inputs from the user
-gate = input("Enter the type of gate (AND, OR, NOT, XOR): ").upper()
-inputSignal1 = input("Enter the first input signal name (e.g., A): ")
+gate = input("Enter the type of gate: ").upper()
+inputSignal1 = input("Enter the first input signal  : ")
 
 # For NOT gate, we don't need a second input signal
 inputSignal2 = None
 if gate != "NOT":
-    inputSignal2 = input("Enter the second input signal name (e.g., B): ")
+    inputSignal2 = input("Enter the second input signal : ")
 
 # Generate the truth table
 generate_truth_table(gate, inputSignal1, inputSignal2)
